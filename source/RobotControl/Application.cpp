@@ -7,6 +7,7 @@
 //
 
 #include "Application.hpp"
+#include "Connection.hpp"
 
 #include <iostream>
 
@@ -24,5 +25,8 @@ namespace RobotControl
 
 int main(int argc, char ** argv) {
 	RobotControl::Application application;
+	RobotControl::Connection connection("192.168.1.47");
+	
+	connection.send_popup("Hello World", "Testing");
 }
 
