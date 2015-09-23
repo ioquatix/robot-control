@@ -10,7 +10,7 @@ define_target "robot-control" do |target|
 		
 		copy headers: source_root.glob('RobotControl/**/*.{h,hpp}')
 		
-		build static_library: "robot-control", source_files: source_root.glob('RobotControl/**/*.cpp')
+		build executable: "RobotControl", source_files: source_root.glob('RobotControl/**/*.cpp')
 	end
 	
 	target.depends "Build/Files"
@@ -20,6 +20,15 @@ define_target "robot-control" do |target|
 	target.depends "Language/C++11"
 	
 	target.provides "Executable/RobotControl"
+end
+
+define_target "robot-control-run" do |target|
+	target.depends "Executable/RobotControl"
+	target.provides "Run/RobotControl"
+	
+	target.build do
+		run executable: "RobotControl"
+	end
 end
 
 define_target "robot-control-tests" do |target|
