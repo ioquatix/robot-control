@@ -12,6 +12,11 @@
 
 namespace RobotControl
 {
+	struct Vector3
+	{
+		float x, y, z;
+	};
+	
 	class Connection
 	{
 	public:
@@ -19,6 +24,8 @@ namespace RobotControl
 		virtual ~Connection();
 		
 		void send_popup(std::string message, std::string title);
+		
+		void send_move(Vector3 position, Vector3 angle, float a = 1.2, float v = 0.3, float t = 1.0, float r = 0);
 		
 	private:
 		std::string _network_address;

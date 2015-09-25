@@ -10,6 +10,8 @@
 #include "Connection.hpp"
 
 #include <iostream>
+#include <cmath>
+#include <unistd.h>
 
 namespace RobotControl
 {
@@ -27,6 +29,10 @@ int main(int argc, char ** argv) {
 	RobotControl::Application application;
 	RobotControl::Connection connection("192.168.1.47");
 	
-	connection.send_popup("Hello World", "Testing");
+	connection.send_move({0, -0.19145, 1.0}, {0.0001, 2.2214, -2.2214});
+	//sleep(5.0);
+	//connection.send_move({0, 0.4, 0.4}, {0, 3.14, 0});
+	//sleep(5.0);
+	//connection.send_move({0, 0.4, 0.4}, {0, 3.14, 3.14});
 }
 

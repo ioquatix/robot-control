@@ -47,6 +47,26 @@ namespace RobotControl
 		send(buffer.str());
 	}
 	
+	void Connection::send_move(Vector3 position, Vector3 angle, float a, float v, float t, float r)
+	{
+		std::stringstream buffer;
+		
+		buffer << "movej(get_inverse_kin(p[";
+		buffer << position.x << "," << position.y << "," << position.z << ",";
+		buffer << angle.x << "," << angle.y << "," << angle.z;
+		buffer << "])";
+		
+		//buffer << ",";
+		//buffer << a << ",";
+		//buffer << v << ",";
+		//buffer << t << ",";
+		//buffer << r;
+		
+		buffer << ")\n";
+		
+		send(buffer.str());
+	}
+	
 	void Connection::send(const std::string & buffer)
 	{
 		std::cout << "Sending: " << buffer << std::endl;
@@ -58,7 +78,6 @@ namespace RobotControl
 		std::string port = "30002";
 		
 		struct addrinfo hints, *servinfo, *p;
-		char s[INET6_ADDRSTRLEN];
 		
 		memset(&hints, 0, sizeof hints);
 		hints.ai_family = AF_UNSPEC;

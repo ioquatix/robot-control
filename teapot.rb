@@ -19,6 +19,8 @@ define_target "robot-control" do |target|
 	target.depends :platform
 	target.depends "Language/C++11"
 	
+	target.depends "Library/opencv"
+	
 	target.provides "Executable/RobotControl"
 end
 
@@ -53,6 +55,9 @@ define_configuration "robot-control" do |configuration|
 	configuration[:source] = "https://github.com/dream-framework"
 
 	configuration.require "build-files"
+	configuration.require "build-make"
+	configuration.require "build-cmake"
+	
 	configuration.require "platforms"
 	configuration.require "variants"
 	configuration.require "language-cpp-class"
